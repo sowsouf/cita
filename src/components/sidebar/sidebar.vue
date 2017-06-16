@@ -11,7 +11,7 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="side-item-icon" @click="findOneWhere(null)">
-								<img src="../../assets/mosque (1).png" alt="">
+								<img src="../../assets/mosque (1).png" alt="Side logo">
 							</div>
 						</div>
 						<div class="col s6 hide">
@@ -68,6 +68,9 @@
 				api.get('/chapitres').then(response => {
 					this.chapitres = response;
 					this.isLoad = true;
+					setTimeout(function() {
+						$(".startup").removeClass('open');
+					}, 500);
 				}).catch(error => {
 					console.error(error);
 				})
@@ -92,14 +95,6 @@
 				$(sidebar).removeClass('open');
 				$(".toggle-sidebar").removeClass('change open');
 				$(".main-body").removeClass('open');
-			},
-
-			onSwipe() {
-				console.log("swipe")
-			},
-
-			test() {
-				Store.invocations = [];
 			}
 
 		}

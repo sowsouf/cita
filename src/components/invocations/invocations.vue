@@ -1,26 +1,36 @@
 <template>
 	<div class="invocations">
-		<span class="hide">{{isLoad = (chapter && invocations) ? true : false}}</span>
-		<div class="preloader" v-if="!isLoad"></div>
+		<v-touch v-on:swiperight="openSidebar">
 
-		<div class="ul-container" :class="{'isLoad': isLoad}">
+			<span class="hide">{{isLoad = (chapter && invocations) ? true : false}}</span>
 
-			<h2>{{(chapter) ? chapter.title : ''}}</h2>
+			<div class="preloader" v-if="!isLoad"></div>
 
-			<ul class="ul-list">
-				<li class="ul-list-item" v-for="invocation in invocations">
-					<div class="fr-doua">
-						{{invocation.francais}}
-					</div>
-					<div class="ph-doua">
-						{{invocation.phonetique}}
-					</div>
-					<hr>
-				</li>
-			</ul>
+			<div class="ul-container" :class="{'isLoad': isLoad}">
 
-		</div>
+				<h2>{{(chapter) ? chapter.title : ''}}</h2>
 
+				<ul class="ul-list">
+					<li class="ul-list-item" v-for="invocation in invocations" >
+						<v-touch v-on:swipeleft="openOptions(invocation)" v-on:tap="closeOptions(0)">
+							<div class="main-content" :class="{'open-options': invocation.id === opened}">
+								<div class="fr-doua">
+									{{invocation.francais}}
+								</div>
+								<div class="ph-doua">
+									{{invocation.phonetique}}
+								</div>
+							</div>
+						</v-touch>
+						<div class="share-content" :class="{'open-options': invocation.id === opened}">
+							<a :href="shareSms(invocation)"><i class="fa fa-share fa-2x"></i></a>
+						</div>
+						<hr>
+					</li>
+				</ul>
+
+			</div>
+		</v-touch>
 	</div>
 
 </template>
@@ -28,7 +38,6 @@
 <script>
 
 	import Api 	from '../../utils/api'
-	import Store 	from '../../utils/store'
 
 	let api = new Api();
 
@@ -38,15 +47,10 @@
 
 		props: ['invocations', 'chapter'],
 
-		created() {
-			//this.findAll();
-		},
-
 		data () {
 			return {
-				//invocations 	: [],
 				isLoad 	: false,
-				store 		: Store
+				opened 	: 0
 			}
 		},
 
@@ -58,6 +62,25 @@
 				}).catch(error => {
 					console.error(error);
 				})
+			},
+
+			shareSms(invocation) {
+				return ("sms:?&body=Invocation de la catégorie \"" + this.chapter.title + "\"%0A%0A" + invocation.francais  + "%0A%0A" + invocation.phonetique);
+			},
+
+			openOptions(invocation) {
+				this.opened = invocation.id;
+			},
+
+			closeOptions(number) {
+				this.opened = number;
+			},
+
+			openSidebar() {
+				let sidebar = $("#sideMenu");
+				$(sidebar).addClass('open');
+				$(".toggle-sidebar").addClass('change open');
+				$(".main-body").addClass('open');
 			}
 		}
 	}

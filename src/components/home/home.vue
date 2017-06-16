@@ -1,15 +1,36 @@
 <template>
 	<div class="home">
 
+		<div class="top-nav">
+			<v-touch v-on:tap="reload">
+				<div class="refresh">
+					<i class="fa fa-refresh"></i>
+				</div>
+			</v-touch>
+		</div>
+
 		<sidebar @findOneWhere="findOneWhere"></sidebar>
 
 		<v-touch v-on:swipeleft="closeSidebar" v-on:swiperight="openSidebar">
 
 			<div class="main-body open isLoad">
-				<div v-if="!chapter && home" id="home">
-					<h2>Pour commencer, choisir une catégorie<br />
-						<i class="fa fa-arrow-left fa-5x"></i>
-					</h2>
+				<div v-if="!chapter && home">
+					<div id="home" class="hide">
+						<h2>Pour commencer, choisir une catégorie<br />
+							<i class="fa fa-arrow-left fa-5x"></i>
+						</h2>
+					</div>
+					<div class="mobile-home">
+						<div class="home-img">
+							<img src="../../assets/mosque (2).png" alt="Home logo" height="128" width="128">
+							<div class="img-box"></div>
+						</div>
+						<p>La citadelle du musulman</p>
+						<small>Pour commencer, choisir une catégorie <br /> <i class="fa fa-arrow-left"></i></small>
+						<div class="footer">
+							<i class="fa fa-copyright"></i> <a href="sofiane-akbly.890m.com">Sofiane Akbly</a>
+						</div>
+					</div>
 				</div>
 				<div v-else>
 					<invocations :invocations="invocations" :chapter="chapter"></invocations>
@@ -88,6 +109,13 @@
 				$(".toggle-sidebar").addClass('change open');
 				$(".main-body").addClass('open');
 			},
+
+			reload() {
+				$(".fa-refresh").addClass("fa-spin");
+				setTimeout(function(){
+					window.location.reload();
+				}, 500);
+			}
 		},
 
 		components: {

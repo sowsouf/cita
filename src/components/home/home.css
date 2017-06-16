@@ -1,10 +1,51 @@
+html, body {
+	background: #fff;
+}
+
+.startup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #7B0707;
+	z-index: 1051;
+	opacity: 0;
+	transform: scale3d(0, 0, 0);
+	transition: all 1s linear;
+}
+
+.startup img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	margin: auto;
+	z-index: 1051;
+	opacity: 0;
+	transform: scale3d(0, 0, 0);
+	transition: all 1s linear;
+}
+
+.startup.open,
+.startup.open img{
+	opacity: 1;
+	transform: scale3d(1, 1, 1);
+	transition: all 1s linear;
+}
+
 .main-body {
+	min-height: 90vh;
 	width: 100%;
 	max-width: 100%;
 	padding-left: 20px;
 	padding-left: 10px;
 	opacity: 0;
-	transition: opacity .5s ease-in-out;
+	transition: opacity .5s ease-in-out, width .4s ease-out, margin-left .4s ease-out;
 }
 
 .main-body.isLoad {
@@ -22,13 +63,12 @@ h2 {
 }
 
 p {
-	text-align: justify;
-	text-align-last: center;
+	text-align: center;
 }
 
 [title="Hosted on free web hosting 000webhost.com. Host your own website for FREE."] {
-opacity: 0 !important;
-display: none;
+	opacity: 0 !important;
+	display: none;
 }
 
 
@@ -68,4 +108,72 @@ display: none;
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
+}
+
+
+.main-body .mobile-home {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	vertical-align: middle;
+	text-align: center;
+	transition: left .4s ease-out;
+}
+
+
+.main-body.open .mobile-home {
+	position: absolute;
+	top: 0;
+	left: 400px;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.home-img {
+	width: 100%;
+}
+
+.home-img img{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 50%;
+	border: 1px solid #7b0707;
+}
+
+.home-img .img-box {
+	height: 14px;
+	width: 128px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0px 10px 5px -5px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 10px 5px -5px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0px 10px 5px -5px rgba(0,0,0,0.6);
+	-o-box-shadow: 0px 10px 5px -5px rgba(0,0,0,0.6);
+}
+
+.footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: right;
+}
+
+.footer a {
+	color: #323232;
+	font-style: italic;
 }

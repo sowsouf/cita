@@ -40,6 +40,42 @@ h2 {
 	text-align: center;
 }
 
+.ul-container .ul-list .ul-list-item {
+	position: relative;
+}
+
+.ul-container .ul-list .ul-list-item .main-content{
+	transition: transform .3s ease-out;
+}
+
+.ul-container .ul-list .ul-list-item .main-content.open-options{
+	transform: translateX(-50%);
+	padding-right: 10px;
+	border-right: 1px solid #ddd;
+	transition: transform .3s ease-out;
+}
+
+.share-content {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 0;
+	bottom: 0;
+	height: 30px;
+	display: none;
+	margin: auto;
+	opacity: 0;
+	transform: translateX(50%);
+	transition: all .3s ease-out;
+}
+
+.share-content.open-options {
+	display: block;
+	opacity: 1;
+	transform: translateX(0);
+	transition: all .3s ease-out;
+}
+
 .fr-doua {
 	color: #aaa;
 	font-style: italic;
