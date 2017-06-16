@@ -1,0 +1,70 @@
+h2 {
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+}
+
+.invocations {
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: calc(100vh - 40px);
+}
+
+*::-webkit-scrollbar {
+	width: 2px;
+	height: 0px;
+}
+
+*::-webkit-scrollbar-track {
+	background: #FFF;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.ul-container {
+	opacity: 0;
+	transform: translateX(100%);
+	transition: all .5s ease-out;
+}
+
+.ul-container.isLoad {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.ul-container .ul-list,
+.ul-container .ul-list .ul-list-item{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.fr-doua {
+	color: #aaa;
+	font-style: italic;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.ph-doua {
+	color: #37473F;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+
+.ul-list-item hr {
+	border-top: 1px solid #8c8b8b;
+	width: 80%;
+	text-align: center;
+}
+.ul-list-item hr:after {
+	content: '❃';
+	display: inline-block;
+	position: relative;
+	top: -14px;
+	padding: 0 10px;
+	background-color: #FFF;
+	color: #8c8b8b;
+	font-size: 18px;
+}

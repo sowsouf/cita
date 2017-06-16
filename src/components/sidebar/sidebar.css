@@ -1,0 +1,146 @@
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1050;
+	top: 0;
+	left: 0;
+	background-color: #7B0707;
+	overflow-x: hidden;
+	padding-top: 40px;
+}
+
+.sidenav.open {
+	width: 400px;
+}
+
+.side-links {
+	opacity: 0;
+	transition: opacity 1s linear;
+}
+
+.side-links.isLoad {
+	opacity: 1;
+}
+
+.sidenav .side-header .side-item-icon {
+	height: 64px;
+	width: 64px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sidenav li {
+	list-style: none;
+	transition: background-color 0.1s linear, transform .5s ease-out;
+}
+
+
+.sidenav li,
+.side-item-icon {
+	-webkit-transform: scale3d(0, 0, 0);
+	-moz-transform: scale3d(0, 0, 0);
+	transform: scale3d(0, 0, 0);
+}
+
+.side-item-icon {
+	transition: transform .5s ease-out .3s;
+}
+
+.sidenav.open li,
+.sidenav.open .side-item-icon {
+	-webkit-transform: scale3d(1, 1, 1);
+	-moz-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+.sidenav li {
+	padding: 8px 8px 8px 8px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #FFF;
+	text-align: left;
+	display: block;
+}
+
+.sidenav li:hover, .offcanvas li:focus {
+	cursor: pointer;
+	color: #7B0707;
+	background-color: #FFF;
+}
+
+.toggle-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1050;
+	cursor: pointer;
+	transition: left .5s ease-in-out;
+}
+
+.toggle-sidebar.open {
+	left: 360px;
+}
+
+.toggle-sidebar.open .bar1,
+.toggle-sidebar.open .bar2,
+.toggle-sidebar.open .bar3 {
+	background-color: #FFF;
+}
+
+.bar1, .bar2, .bar3 {
+	width: 40px;
+	height: 5px;
+	margin: 6px 0;
+	background-color: #7B0707;
+	transition: 0.4s;
+}
+
+.change .bar1 {
+	-webkit-transform: translateY(11px) rotate(-45deg);
+	transform: translateY(11px) rotate(-45deg);
+}
+
+.change .bar2 {
+	opacity: 0;
+}
+
+.change .bar3 {
+	-webkit-transform: translateY(-11px) rotate(45deg);
+	transform: translateY(-11px) rotate(45deg);
+}
+
+
+@media screen and (max-width: 490px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+
+	.sidenav.open {
+		width: 100%;
+	}
+
+	.sidenav li {
+		font-size: 18px;
+	}
+
+	.toggle-sidebar.open {
+		left: calc(100% - 40px);
+	}
+
+	.main-body {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.main-body.open {
+		margin-left: 0;
+	}
+
+	#home {
+		display: none;
+	}
+}

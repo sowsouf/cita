@@ -1,0 +1,141 @@
+h2 {
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+}
+
+.form-container label {
+	font-size: 1rem;
+}
+
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+	border-bottom: none;
+	box-shadow: none;
+}
+
+.form-container hr {
+	margin-bottom: 40px;
+	background-color: #7b0707;
+	border-top: 1px solid #7b0707;
+	text-align: center;
+}
+.form-container hr:after {
+	content: '❃';
+	display: inline-block;
+	position: relative;
+	top: -14px;
+	padding: 0 10px;
+	border-radius: 50%;
+	background-color: #FFF;
+	color: #7b0707;
+	font-size: 18px;
+}
+
+.btn {
+	padding: 0 5px;
+	text-transform: inherit;
+	background-color: #000;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+	background-color: #7b0707;
+}
+
+.btn-block {
+	width: 100%;
+}
+
+#addChapter,
+#addChapterContainer {
+	position: relative;
+}
+
+.btn-circle {
+	/*position: absolute;*/
+	padding: 0;
+ 	height: 30px;
+ 	width: 30px;
+ 	line-height: 30px;
+ 	text-align: center;
+ 	border: 2px solid #FFF;
+ 	border-radius: 50%;
+ 	background-color: rgba(50, 50, 50, .9);
+
+}
+
+.btn-top {
+	top: 0;
+}
+
+.btn-left {
+	left: 0;
+}
+
+.btn-bottom {
+	bottom: 0;
+}
+
+.btn-right {
+	right: 0;
+}
+
+.select-group li:first-letter {
+	text-transform: capitalize;
+}
+.select-group {
+	/*height: 200px;*/
+	/*overflow: auto;*/
+}
+
+.select-group-ul {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.select-group li {
+	cursor: pointer;
+	list-style: none;
+	padding: 2px 6px;
+	color: #666;
+	transition: all .5s;
+}
+
+.select-group li:hover,
+.select-group li.selected {
+	color: #FFF;
+	background-color: #7b0707 !important;
+}
+
+.select-group li .fa {
+	color: #e67e22;
+}
