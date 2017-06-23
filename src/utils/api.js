@@ -1,13 +1,9 @@
 	import http 	from 	'axios'
-	// import Store 	from 	'./store'
 
 	export default class Api{
 		constructor(url){
-			//if (!this.readCookie('token'))
-			//	return;
-			// this.token 		= this.readCookie('token');
-			/*this.url 		= "http://localhost/citadelle/api";*/
-			this.url 		= "https://sofianeakbly-personal-test.000webhostapp.com/citadelle_api";
+			//this.url 		= "http://localhost/api/citadelle";
+			this.url 		= "https://sofianeakbly-personal-test.000webhostapp.com/api/citadelle";
 			this.invocations 	= [];
 			this.chapitres 		= [];
 		}
@@ -16,9 +12,8 @@
 
 			return new Promise((resolve, reject) => {
 
-				http.get(this.url + url).then(response=> {
-					// this.schemas = response.data.data;
-					resolve(response.data.data);
+				http.get(this.url + url).then(response => {
+					resolve(response.data);
 				}).catch(error => {
 					reject(error)
 				});
@@ -54,6 +49,7 @@
 				});
 			})
 		}
+
 		delete(url) {
 
 			return new Promise((resolve, reject) => {

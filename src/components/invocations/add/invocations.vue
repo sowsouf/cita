@@ -61,6 +61,7 @@
 
 		created() {
 			this.findAllChapter();
+			Store.curChapitres = {"toto": "titi"};
 		},
 
 		data () {

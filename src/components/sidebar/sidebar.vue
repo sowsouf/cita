@@ -21,9 +21,18 @@
 					</div>
 				</div>
 
+				<div class="form-group row">
+					<div class="search-form">
+						<div class="search-form-icon">
+							<i class="fa fa-search"></i>
+						</div>
+						<input type="search" v-model="searchVal">
+					</div>
+				</div>
+
 				<div class="side-links" :class="{'isLoad': isLoad}">
 					<ul>
-						<li v-for="chapitre in chapitres" @click="findOneWhere(chapitre)">
+						<li v-for="chapitre in chapitres" @click="findOneWhere(chapitre)" v-if="isShowing(chapitre)">
 							{{chapitre.title}}
 						</li>
 					</ul>
@@ -60,7 +69,8 @@
 			return {
 				chapitres 	: [],
 				invocations 	: [],
-				isLoad 		: true
+				isLoad 	: true,
+				searchVal 	: ''
 			}
 		},
 
@@ -78,6 +88,12 @@
 					Store.curChapitres = null;
 					this.$router.push({"name": "Home"});
 				}
+			},
+
+			isShowing(chapitre) {
+				if ((this.searchVal === '') || (chapitre.title.toLowerCase().indexOf(this.searchVal.toLowerCase()) >= 0))
+					return (true);
+				return (false);
 			},
 
 			toggleSidebar() {
