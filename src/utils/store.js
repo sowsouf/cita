@@ -1,9 +1,8 @@
 export default {
 
-	chapterTitle 		: '',
-	click 			: true,
-	chapitres 		: [],
-	invocations 		: [],
-	currentInvocations 	: [],
+	chapitres 		: null,
+	curChapitres 		: null,
+	invocations 		: null,
+	invocationsByChap 	: [],
 
 }

@@ -9,12 +9,10 @@
 			</v-touch>
 		</div>
 
-		<sidebar @findOneWhere="findOneWhere"></sidebar>
-
 		<v-touch v-on:swipeleft="closeSidebar" v-on:swiperight="openSidebar">
 
 			<div class="main-body open isLoad">
-				<div v-if="!chapter && home">
+				<div v-if="!store.curChapitres && home">
 					<div id="home" class="hide">
 						<h2>Pour commencer, choisir une catégorie<br />
 							<i class="fa fa-arrow-left fa-5x"></i>
@@ -28,15 +26,12 @@
 						<p>La citadelle du musulman</p>
 						<small>Pour commencer, choisir une catégorie <br /> <i class="fa fa-arrow-left"></i></small>
 						<div class="footer">
-							<i class="fa fa-copyright"></i> <a href="sofiane-akbly.890m.com">Sofiane Akbly</a>
+							<span>Développé par <a href="sofiane-akbly.890m.com">Sofiane Akbly</a> <i class="fa fa-copyright"></i></span>
 						</div>
 					</div>
 				</div>
-				<div v-else>
-					<invocations :invocations="invocations" :chapter="chapter"></invocations>
-				</div>
-
 				<router-view></router-view>
+
 			</div>
 
 		</v-touch>
@@ -46,55 +41,20 @@
 
 <script>
 
-	import Sidebar 	from './../sidebar/sidebar'
-	import Invocations 	from './../invocations/invocations'
-
-	import Api 		from '../../utils/api'
 	import Store 		from '../../utils/store'
-
-	let api = new Api();
 
 	export default {
 
 		name: 'home',
 
-		created() {
-
-		},
-
 		data () {
 			return {
-				invocations 	: null,
-				chapter 	: null,
-				home 		: true
+				home 		: true,
+				store 		: Store
 			}
 		},
 
 		methods: {
-			findOneWhere(chapitre) {
-				this.chapter = null;
-				this.invocations = null;
-				this.home = false;
-				if (!chapitre) {
-					Store.click = true;
-					this.home = true;
-					this.invocations = null;
-					return (false);
-				}
-				api.get('/invchap/' + chapitre.id).then(response => {
-					Store.click = true;
-					this.invocations = response;
-					this.chapter = chapitre;
-					if ($(window).width() < 490) {
-						let sidebar = $("#sideMenu");
-						$(sidebar).toggleClass('open');
-						$(".toggle-sidebar").toggleClass('change open');
-						$(".main-body").toggleClass('open');
-					}
-				}).catch(error => {
-					console.error(error);
-				})
-			},
 
 			closeSidebar() {
 				let sidebar = $("#sideMenu");
@@ -116,12 +76,8 @@
 					window.location.reload();
 				}, 500);
 			}
-		},
-
-		components: {
-			Sidebar,
-			Invocations
 		}
 	}
+
 </script>
 <style type="text/css" src="./home.css"></style>

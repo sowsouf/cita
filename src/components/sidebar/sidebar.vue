@@ -1,11 +1,10 @@
 <template>
 	<div class="sidebar">
 
-	<v-touch v-on:swipeleft="closeSidebar">
+		<v-touch v-on:swipeleft="closeSidebar">
 			<div class="sidenav open" id="sideMenu">
 
 				<div class="preloader" v-if="!isLoad"></div>
-
 
 				<div class="side-header">
 					<div class="row">
@@ -53,33 +52,31 @@
 		name: 'sidebar',
 
 		created() {
-			this.findAll();
+			this.chapitres 		= Store.chapitres;
+			this.invocations 	= Store.invocations;
 		},
 
 		data () {
 			return {
-				chapitres 	: {},
-				isLoad 	: false
+				chapitres 	: [],
+				invocations 	: [],
+				isLoad 		: true
 			}
 		},
 
 		methods: {
-			findAll() {
-				api.get('/chapitres').then(response => {
-					this.chapitres = response;
-					this.isLoad = true;
-					setTimeout(function() {
-						$(".startup").removeClass('open');
-					}, 500);
-				}).catch(error => {
-					console.error(error);
-				})
-			},
 
 			findOneWhere(chapitre) {
-				if (Store.click) {
-					Store.click = false;
-					this.$emit('findOneWhere', chapitre);
+				if ($(window).width() < 491)
+					this.closeSidebar();
+				if (chapitre) {
+					Store.curChapitres = chapitre;
+					this.$router.push({"name": "Invocations", "params": {"id": chapitre.id}});
+
+				}
+				else {
+					Store.curChapitres = null;
+					this.$router.push({"name": "Home"});
 				}
 			},
 

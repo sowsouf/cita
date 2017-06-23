@@ -6,18 +6,19 @@
 	top: 0;
 	left: 0;
 	background-color: #7B0707;
-	overflow-x: hidden;
+	overflow-y: scroll; /* has to be scroll, not auto */
+	-webkit-overflow-scrolling: touch;
 	padding-top: 40px;
 	transition: width .4s ease-out;
 }
 
 *::-webkit-scrollbar {
-	width: 2px;
+	width: 0px;
 	height: 0px;
 }
 
 *::-webkit-scrollbar-track {
-	background: #7B0707;
+	background: #FFF;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -160,7 +161,8 @@
 		padding-right: 5px;
 	}
 
-	.main-body.open {
+	.main-body.isLoad.open {
+		display: none;
 		margin-left: 0;
 		width: 0;
 	}
@@ -173,7 +175,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: -1;
+		z-index: 1;
 		height: 60px;
 		background-color: #7B0707;
 		width: 100%;

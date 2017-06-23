@@ -2,13 +2,13 @@
 	<div class="invocations">
 		<v-touch v-on:swiperight="openSidebar">
 
-			<span class="hide">{{isLoad = (chapter && invocations) ? true : false}}</span>
+			{{getInvocations()}}
 
 			<div class="preloader" v-if="!isLoad"></div>
 
 			<div class="ul-container" :class="{'isLoad': isLoad}">
 
-				<h2>{{(chapter) ? chapter.title : ''}}</h2>
+				<h2>{{(chapitres) ? chapitres.title : ''}}</h2>
 
 				<ul class="ul-list">
 					<li class="ul-list-item" v-for="invocation in invocations" >
@@ -29,6 +29,8 @@
 					</li>
 				</ul>
 
+
+
 			</div>
 		</v-touch>
 	</div>
@@ -38,6 +40,7 @@
 <script>
 
 	import Api 	from '../../utils/api'
+	import Store 	from '../../utils/store'
 
 	let api = new Api();
 
@@ -45,27 +48,28 @@
 
 		name: 'invocations',
 
-		props: ['invocations', 'chapter'],
-
 		data () {
 			return {
-				isLoad 	: false,
-				opened 	: 0
+				isLoad 		: true,
+				opened 	: 0,
+				invocations 	: Store.invocationsByChap,
+				chapitres 	: {"id" : 0},
 			}
 		},
 
 		methods: {
-			findAll() {
-				api.get('/invocations').then(response => {
-					this.invocations = response;
-					this.isLoad = true;
-				}).catch(error => {
-					console.error(error);
-				})
+
+			getInvocations() {
+				if (this.$route.params.id !== this.chapitres.id) {
+					this.chapitres 		= Store.chapitres.findChapterById(this.$route.params.id);
+					this.invocations 	= Store.invocations.findOneById(this.$route.params.id);
+					Store.change = false;
+				}
+
 			},
 
 			shareSms(invocation) {
-				return ("sms:?&body=Invocation de la catégorie \"" + this.chapter.title + "\"%0A%0A" + invocation.francais  + "%0A%0A" + invocation.phonetique);
+				return ("sms:?&body=Invocation de la catégorie \"" + this.chapitres.title + "\"%0A%0A" + invocation.francais  + "%0A%0A" + invocation.phonetique);
 			},
 
 			openOptions(invocation) {
@@ -81,8 +85,10 @@
 				$(sidebar).addClass('open');
 				$(".toggle-sidebar").addClass('change open');
 				$(".main-body").addClass('open');
+				this.closeOptions(0);
 			}
 		}
 	}
+
 </script>
 <style type="text/css" src="./invocations.css"></style>

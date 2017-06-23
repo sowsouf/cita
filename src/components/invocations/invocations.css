@@ -5,12 +5,13 @@ h2 {
 
 .invocations {
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: scroll; /* has to be scroll, not auto */
+	-webkit-overflow-scrolling: touch;
 	height: calc(100vh - 40px);
 }
 
 *::-webkit-scrollbar {
-	width: 2px;
+	width: 0px;
 	height: 0px;
 }
 
@@ -19,7 +20,7 @@ h2 {
 }
 
 *::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.5);
+	background: #7B0707;
 }
 
 .ul-container {
